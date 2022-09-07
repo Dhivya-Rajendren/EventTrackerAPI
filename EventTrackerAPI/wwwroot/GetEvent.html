@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="jquery/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+         
+            $("#btnGet").click(function () {
+                var eventId = $("#txtEventId").val();
+              
+                $.ajax({
+                    url: 'api/Events/' + eventId,
+                    method: 'GET',
+                    dataType:'json',
+                    success: function (data) {
+                     
+                        $("#tblEvents").append('<tr><td>' + data.eventId + '</td><td>' + data.eventName + '</td><td>' + data.eventType + '</td><td>' + data.eventDate + '</td></tr>');
+                    }
+                })
+
+            });
+
+    });
+    </script>
+</head>
+<body>
+
+    Enter Event Id :<input type="text" id="txtEventId" />
+
+    <button id="btnGet">Get Event </button>
+
+    <table class="table table-bordered w-50 mb-4" id="tblEvents">
+    </table>
+</body>
+</html>
